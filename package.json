@@ -1,0 +1,26 @@
+{
+  "name": "ampersand-dom",
+  "description": "Super light-weight DOM manipulation lib.",
+  "version": "0.0.0",
+  "author": "'Henrik Joreteg' <henrik@andyet.net>",
+  "bugs": {
+    "url": "https://github.com/ampersandjs/ampersand-dom/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "homepage": "https://github.com/ampersandjs/ampersand-dom",
+  "keywords": [
+    "dom",
+    "binding"
+  ],
+  "license": "MIT",
+  "main": "ampersand-dom.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ampersandjs/ampersand-dom"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
