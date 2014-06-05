@@ -3,20 +3,20 @@ var dom = require('../ampersand-dom');
 
 var fixture = document.createElement('div');
 fixture.id = 'fixture';
+document.body.appendChild(fixture);
+
 var style = document.createElement('style');
 style.innerHTML = '';
-
-document.body.appendChild(fixture);
 document.body.appendChild(style);
-
-var resetFixture = function () {
-    fixture.innerHTML = '';
-    //style.innerHTML = '';
-};
 
 function setStyle(str) {
     style.innerHTML = str;
 }
+
+var resetFixture = function () {
+    fixture.innerHTML = '';
+    style.innerHTML = '';
+};
 
 suite('text', function (s) {
     s.beforeEach(resetFixture);
