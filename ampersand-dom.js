@@ -1,9 +1,9 @@
-module.exports = {
+var dom = module.exports = {
     text: function (el, val) {
         el.textContent = getString(val);
     },
     // optimize if we have classList
-    addClass: function (el) {
+    addClass: function (el, cls) {
         if (el.classList) {
             el.classList.add(getString(cls));
         } else {
@@ -42,12 +42,16 @@ module.exports = {
     setAttribute: function (el, attr, value) {
         el.setAttribute(attr, getString(value));
     },
+    getAttribute: function (el, attr) {
+        return el.getAttribute(attr);
+    },
     hide: function (el) {
+        storeDisplayStyle(el);
         el.style.display = 'none';
     },
     // show element
     show: function (el) {
-        el.style.display = defaultDisplay(el.nodeName) || 'block';
+        restoreDisplayStyle(el);
     },
     html: function (el, content) {
         el.innerHTML = content;
@@ -71,21 +75,11 @@ function hasClass(el, cls) {
     }
 }
 
-var getComputedStyle = window.getComputedStyle || function () {}();
-var elementDisplay = {};
 
-// figures out and caches default display style for a node type
-// used for showing/hiding
-function defaultDisplay(nodeName) {
-    var element, display, style;
-    if (!elementDisplay[nodeName]) {
-        element = document.createElement(nodeName);
-        document.body.appendChild(element);
-        style = getComputedStyle(element, '');
-        display = style && style.getPropertyValue('display') || 'block';
-        element.parentNode.removeChild(element);
-        display == "none" && (display = "block");
-        elementDisplay[nodeName] = display;
-    }
-    return elementDisplay[nodeName];
+function storeDisplayStyle (el) {
+    dom.setAttribute(el, 'data-anddom-display', el.style.display);
+}
+
+function restoreDisplayStyle (el) {
+    el.style.display = dom.getAttribute(el, 'data-anddom-display') || '';
 }
