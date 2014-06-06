@@ -16,6 +16,9 @@ It has zero dependencies.
 npm install ampersand-dom
 ```
 
+## browser support
+[![testling badge](https://ci.testling.com/AmpersandJS/ampersand-dom.png)](https://ci.testling.com/AmpersandJS/ampersand-dom)
+
 ## example
 
 Here are all the methods and their usage:
