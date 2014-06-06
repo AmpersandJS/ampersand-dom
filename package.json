@@ -21,6 +21,9 @@
     "url": "git://github.com/ampersandjs/ampersand-dom"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "testem"
+  },
+  "devDependencies": {
+    "tape": "^2.13.2"
   }
 }
