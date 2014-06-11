@@ -4,8 +4,10 @@ var dom = module.exports = {
     },
     // optimize if we have classList
     addClass: function (el, cls) {
+        cls = getString(cls);
+        if (!cls) return;
         if (el.classList) {
-            el.classList.add(getString(cls));
+            el.classList.add(cls);
         } else {
             if (!hasClass(el, cls)) {
                 if (el.classList) {
