@@ -1,4 +1,4 @@
-var suite = require('./tape-suite');
+var suite = require('tape-suite');
 var dom = require('../ampersand-dom');
 
 var fixture = document.createElement('div');
@@ -12,6 +12,10 @@ document.body.appendChild(style);
 function setStyle(str) {
     style.innerHTML = str;
 }
+
+var normalizeString = function (str) {
+    return str.trim().replace(/\s+/g, ' ');
+};
 
 var resetFixture = function () {
     fixture.innerHTML = '';
@@ -50,25 +54,25 @@ suite('classes', function (s) {
 
     s.test('add/switch/remove classes', function (t) {
         dom.addClass(fixture, 'foo');
-        t.equal(fixture.getAttribute('class'), 'foo');
+        t.equal(normalizeString(fixture.getAttribute('class')), 'foo');
 
         dom.addClass(fixture, 'bar');
-        t.equal(fixture.getAttribute('class'), 'foo bar');
+        t.equal(normalizeString(fixture.getAttribute('class')), 'foo bar');
 
         dom.addClass(fixture, 'bar');
-        t.equal(fixture.getAttribute('class'), 'foo bar');
+        t.equal(normalizeString(fixture.getAttribute('class')), 'foo bar');
 
         dom.switchClass(fixture, 'bar', 'baz');
-        t.equal(fixture.getAttribute('class'), 'foo baz');
+        t.equal(normalizeString(fixture.getAttribute('class')), 'foo baz');
 
         dom.removeClass(fixture, 'baz');
-        t.equal(fixture.getAttribute('class'), 'foo');
+        t.equal(normalizeString(fixture.getAttribute('class')), 'foo');
 
         dom.removeClass(fixture, 'foo');
-        t.equal(fixture.getAttribute('class'), '');
+        t.equal(normalizeString(fixture.getAttribute('class')), '');
 
         dom.removeClass(fixture, 'foo');
-        t.equal(fixture.getAttribute('class'), '');
+        t.equal(normalizeString(fixture.getAttribute('class')), '');
 
         t.end();
     });
@@ -123,6 +127,21 @@ suite('show/hide', function (s) {
 
     s.test('simple', function (t) {
         t.notOk(isHidden(el));
+
+        dom.hide(el);
+        t.ok(isHidden(el));
+
+        dom.show(el);
+        t.notOk(isHidden(el));
+
+        t.end();
+    });
+
+    s.test('simple', function (t) {
+        t.notOk(isHidden(el));
+
+        dom.hide(el);
+        t.ok(isHidden(el));
 
         dom.hide(el);
         t.ok(isHidden(el));
