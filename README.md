@@ -33,6 +33,7 @@ dom.text(el, 'set text content');
 
 // uses classList if available
 dom.addClass(el, 'someclass');
+dom.hasClass(el, 'someclass'); // => true
 dom.removeClass(el, 'someclass');
 
 // removes old if found, adds new

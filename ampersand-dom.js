@@ -26,6 +26,7 @@ var dom = module.exports = {
             el.className = el.className.replace(new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
         }
     },
+    hasClass: hasClass,
     switchClass: function (el, prevCls, newCls) {
         if (prevCls) this.removeClass(el, prevCls);
         this.addClass(el, newCls);

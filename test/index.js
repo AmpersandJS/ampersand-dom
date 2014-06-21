@@ -51,24 +51,41 @@ suite('classes', function (s) {
     s.test('add/switch/remove classes', function (t) {
         dom.addClass(fixture, 'foo');
         t.equal(fixture.getAttribute('class'), 'foo');
+        t.ok(dom.hasClass(fixture, 'foo'));
 
         dom.addClass(fixture, 'bar');
         t.equal(fixture.getAttribute('class'), 'foo bar');
+        t.ok(dom.hasClass(fixture, 'foo'));
+        t.ok(dom.hasClass(fixture, 'bar'));
 
         dom.addClass(fixture, 'bar');
         t.equal(fixture.getAttribute('class'), 'foo bar');
+        t.ok(dom.hasClass(fixture, 'foo'));
+        t.ok(dom.hasClass(fixture, 'bar'));
 
         dom.switchClass(fixture, 'bar', 'baz');
         t.equal(fixture.getAttribute('class'), 'foo baz');
+        t.ok(dom.hasClass(fixture, 'foo'));
+        t.notOk(dom.hasClass(fixture, 'bar'));
+        t.ok(dom.hasClass(fixture, 'baz'));
 
         dom.removeClass(fixture, 'baz');
         t.equal(fixture.getAttribute('class'), 'foo');
+        t.ok(dom.hasClass(fixture, 'foo'));
+        t.notOk(dom.hasClass(fixture, 'bar'));
+        t.notOk(dom.hasClass(fixture, 'baz'));
 
         dom.removeClass(fixture, 'foo');
         t.equal(fixture.getAttribute('class'), '');
+        t.notOk(dom.hasClass(fixture, 'foo'));
+        t.notOk(dom.hasClass(fixture, 'bar'));
+        t.notOk(dom.hasClass(fixture, 'baz'));
 
         dom.removeClass(fixture, 'foo');
         t.equal(fixture.getAttribute('class'), '');
+        t.notOk(dom.hasClass(fixture, 'foo'));
+        t.notOk(dom.hasClass(fixture, 'bar'));
+        t.notOk(dom.hasClass(fixture, 'baz'));
 
         t.end();
     });
