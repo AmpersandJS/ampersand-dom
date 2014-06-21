@@ -49,12 +49,14 @@ var dom = module.exports = {
         return el.getAttribute(attr);
     },
     hide: function (el) {
-        storeDisplayStyle(el);
-        el.style.display = 'none';
+        if (!isHidden(el)) {
+            storeDisplayStyle(el);
+            hide(el);
+        }
     },
     // show element
     show: function (el) {
-        restoreDisplayStyle(el);
+        show(el);
     },
     html: function (el, content) {
         el.innerHTML = content;
@@ -78,11 +80,20 @@ function hasClass(el, cls) {
     }
 }
 
+function isHidden (el) {
+    return dom.getAttribute(el, 'data-anddom-hidden') === 'true';
+}
 
 function storeDisplayStyle (el) {
     dom.setAttribute(el, 'data-anddom-display', el.style.display);
 }
 
-function restoreDisplayStyle (el) {
+function show (el) {
     el.style.display = dom.getAttribute(el, 'data-anddom-display') || '';
+    dom.removeAttribute(el, 'data-anddom-hidden');
+}
+
+function hide (el) {
+    dom.setAttribute(el, 'data-anddom-hidden', 'true');
+    el.style.display = 'none';
 }
