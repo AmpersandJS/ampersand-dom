@@ -65,7 +65,7 @@ var dom = module.exports = {
 
 // helpers
 function getString(val) {
-    if (!val) {
+    if (!val && val !== 0) {
         return '';
     } else {
         return val;

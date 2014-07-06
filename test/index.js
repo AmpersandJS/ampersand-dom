@@ -31,6 +31,25 @@ suite('text', function (s) {
         t.end();
     });
 
+    s.test('falsy values', function(t) {
+        dom.text(fixture, 0);
+        t.equal(fixture.innerHTML, '0');
+
+        dom.text(fixture, undefined);
+        t.equal(fixture.innerHTML, '');
+
+        dom.text(fixture, null);
+        t.equal(fixture.innerHTML, '');
+
+        dom.text(fixture, NaN);
+        t.equal(fixture.innerHTML, '');
+
+        dom.text(fixture, false);
+        t.equal(fixture.innerHTML, '');
+
+        t.end();
+    });
+
     s.test('on text node', function (t) {
         var node1 = document.createTextNode('hello');
         var node2 = document.createTextNode('there');
