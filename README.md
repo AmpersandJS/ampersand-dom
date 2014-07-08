@@ -2,11 +2,7 @@
 
 Minimal util-layer for applying transformations to DOM.
 
-**Still in a very in-progress-not-sure-if-this-is-a-good-idea type stage.**
-
-**Still needs tests**
-
-It's a pretty thin layer on top of DOM apis, but should work crossbrowser (needs tests still).
+It's a pretty thin layer on top of DOM APIs.
 
 It has zero dependencies.
 
@@ -18,6 +14,10 @@ npm install ampersand-dom
 
 ## browser support
 [![testling badge](https://ci.testling.com/AmpersandJS/ampersand-dom.png)](https://ci.testling.com/AmpersandJS/ampersand-dom)
+
+## falsy values
+
+When setting something to a falsy value: `NaN`, `undefined`, `null`, and `false` all become `''`. However, `0` becomes `"0"` in order to allow setting `0` as the text content of an element.
 
 ## example
 
