@@ -131,6 +131,18 @@ suite('attributes', function (s) {
         t.end();
     });
 
+    s.test('set value attribute', function (t) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        fixture.appendChild(input);
+
+        input.value = 20;
+        dom.setAttribute(input, 'value', 10);
+        t.equal(input.value, '10');
+
+        t.end();
+    });
+
     s.test('set/get/remove', function (t) {
         dom.setAttribute(fixture, 'foo', 'bar');
         t.equal(fixture.getAttribute('foo'), 'bar');
