@@ -43,6 +43,10 @@ var dom = module.exports = {
     },
     // sets attribute to string value given, clearing any current value
     setAttribute: function (el, attr, value) {
+        if (attr === 'value' && el.hasOwnProperty('value')) {
+            el[attr] = value;
+            return;
+        }
         el.setAttribute(attr, getString(value));
     },
     getAttribute: function (el, attr) {
