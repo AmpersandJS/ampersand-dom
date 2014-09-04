@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "browserify": "~4.1.8",
+    "phantomjs": "^1.9.7-15",
     "run-browser": "~1.3.1",
     "tap-spec": "^0.2.0",
     "tape": "^2.13.2",
