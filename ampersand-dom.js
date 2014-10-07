@@ -36,14 +36,14 @@ var dom = module.exports = {
     addAttribute: function (el, attr) {
         // setting to empty string does same
         el.setAttribute(attr, '');
-        // Some browsers won't update UI for checkboxes unless you
-        // set it like so: https://bugzilla.mozilla.org/show_bug.cgi?id=327020
-        if (attr === 'checked') el.checked = true;
+        // Some browsers won't update UI for boolean attributes unless you
+        // set it directly. So we do both
+        if (hasBooleanProperty(el, attr)) el[attr] = true;
     },
     // completely removes attribute
     removeAttribute: function (el, attr) {
         el.removeAttribute(attr);
-        if (attr === 'checked') el.checked = false;
+        if (hasBooleanProperty(el, attr)) el[attr] = false;
     },
     // sets attribute to string value given, clearing any current value
     setAttribute: function (el, attr, value) {
@@ -82,6 +82,11 @@ function hasClass(el, cls) {
     } else {
         return new RegExp('(^| )' + cls + '( |$)', 'gi').test(el.className);
     }
+}
+
+function hasBooleanProperty(el, prop) {
+    var val = el[prop];
+    return prop in el && (val === true || val === false);
 }
 
 function isHidden (el) {

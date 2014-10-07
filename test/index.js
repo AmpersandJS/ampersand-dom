@@ -124,6 +124,33 @@ suite('attributes', function (s) {
 
         dom.addAttribute(input, 'checked');
         t.equal(input.checked, true);
+        t.ok(input.hasAttribute('checked'));
+
+        dom.removeAttribute(input, 'checked');
+        t.equal(input.checked, false);
+        t.ok(!input.hasAttribute('checked'));
+
+        dom.addAttribute(input, 'disabled');
+        t.equal(input.disabled, true);
+        t.ok(input.hasAttribute('disabled'));
+
+        console.log(input.outerHTML);
+
+        dom.removeAttribute(input, 'disabled');
+        t.equal(input.disabled, false);
+        t.ok(!input.hasAttribute('disabled'));
+
+
+        t.end();
+    });
+
+    s.test('add/remove boolean attribute', function (t) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        fixture.appendChild(input);
+
+        dom.addAttribute(input, 'checked');
+        t.equal(input.checked, true);
 
         dom.removeAttribute(input, 'checked');
         t.equal(input.checked, false);
