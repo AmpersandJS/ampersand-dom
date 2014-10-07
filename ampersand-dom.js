@@ -36,10 +36,14 @@ var dom = module.exports = {
     addAttribute: function (el, attr) {
         // setting to empty string does same
         el.setAttribute(attr, '');
+        // Some browsers won't update UI for checkboxes unless you
+        // set it like so: https://bugzilla.mozilla.org/show_bug.cgi?id=327020
+        if (attr === 'checked') el.checked = true;
     },
     // completely removes attribute
     removeAttribute: function (el, attr) {
         el.removeAttribute(attr);
+        if (attr === 'checked') el.checked = false;
     },
     // sets attribute to string value given, clearing any current value
     setAttribute: function (el, attr, value) {
