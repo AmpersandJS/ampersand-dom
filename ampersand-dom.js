@@ -77,6 +77,14 @@ var dom = module.exports = {
         if (!mode) mode = 'display';
         show(el, mode);
     },
+    toggle: function (el) {
+        if (!isHidden(el)) {
+            storeDisplayStyle(el);
+            hide(el);
+        } else {
+            show(el);
+        }
+    },
     html: function (el, content) {
         el.innerHTML = content;
     }
