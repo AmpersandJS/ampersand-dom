@@ -110,6 +110,10 @@ suite('classes', function (s) {
         t.notOk(dom.hasClass(fixture, 'bar'));
         t.notOk(dom.hasClass(fixture, 'baz'));
 
+        t.doesNotThrow(function () {
+            dom.removeClass(fixture, '');
+        }, 'should not complain when removing empty class');
+
         t.end();
     });
 });

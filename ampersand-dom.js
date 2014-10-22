@@ -20,7 +20,8 @@ var dom = module.exports = {
     },
     removeClass: function (el, cls) {
         if (el.classList) {
-            el.classList.remove(getString(cls));
+            cls = getString(cls);
+            if (cls) el.classList.remove(cls);
         } else {
             // may be faster to not edit unless we know we have it?
             el.className = el.className.replace(new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
