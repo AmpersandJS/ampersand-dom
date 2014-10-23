@@ -86,6 +86,16 @@ suite('classes', function (s) {
         t.ok(dom.hasClass(fixture, 'foo'));
         t.ok(dom.hasClass(fixture, 'bar'));
 
+        dom.addClass(fixture, ['foo2', 'bar2'])
+        t.equal(normalizeString(fixture.getAttribute('class')), 'foo bar foo2 bar2');
+        t.ok(dom.hasClass(fixture, 'foo2'));
+        t.ok(dom.hasClass(fixture, 'bar2'));
+
+        dom.removeClass(fixture, ['foo2', 'bar2'])
+        t.equal(normalizeString(fixture.getAttribute('class')), 'foo bar');
+        t.ok(!dom.hasClass(fixture, 'foo2'));
+        t.ok(!dom.hasClass(fixture, 'bar2'));
+
         dom.switchClass(fixture, 'bar', 'baz');
         t.equal(normalizeString(fixture.getAttribute('class')), 'foo baz');
         t.ok(dom.hasClass(fixture, 'foo'));

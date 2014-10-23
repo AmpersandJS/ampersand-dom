@@ -7,7 +7,11 @@ var dom = module.exports = {
     addClass: function (el, cls) {
         cls = getString(cls);
         if (!cls) return;
-        if (el.classList) {
+        if (Array.isArray(cls)) {
+            cls.forEach(function(c) {
+                dom.addClass(el, c);
+            });
+        } else if (el.classList) {
             el.classList.add(cls);
         } else {
             if (!hasClass(el, cls)) {
@@ -20,7 +24,11 @@ var dom = module.exports = {
         }
     },
     removeClass: function (el, cls) {
-        if (el.classList) {
+        if (Array.isArray(cls)) {
+            cls.forEach(function(c) {
+                dom.removeClass(el, c);
+            });
+        } else if (el.classList) {
             cls = getString(cls);
             if (cls) el.classList.remove(cls);
         } else {
