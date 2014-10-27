@@ -1,3 +1,4 @@
+/*$AMPERSAND_VERSION*/
 var dom = module.exports = {
     text: function (el, val) {
         el.textContent = getString(val);
