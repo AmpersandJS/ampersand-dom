@@ -52,7 +52,7 @@ dom.setAttribute(el, 'value', 'the value');
 // sets display none
 dom.hide(el);
 
-// shows element, trying to determine it's default display state
+// shows element, trying to determine its default display state
 // based on tagname and getComputedStyle()
 dom.show(el);
 
