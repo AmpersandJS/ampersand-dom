@@ -66,6 +66,9 @@ dom.show(el);
 // sets visibility on element based on its previous value
 dom.show(el, 'visibility');
 
+// toggle display of element, between show/hide
+dom.toggle(el);
+
 // sets inner HTML, takes string or DOM
 dom.html(el, '<div></div>');
 ```
