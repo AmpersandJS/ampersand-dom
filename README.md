@@ -35,6 +35,10 @@ dom.text(el, 'set text content');
 dom.addClass(el, 'someclass');
 dom.hasClass(el, 'someclass'); // => true
 dom.removeClass(el, 'someclass');
+dom.toggleClass(el, 'someclass');
+dom.toggleClass(el, 'someclass', function (el) {
+    return condition;
+});
 
 // removes old if found, adds new
 dom.switchClass(el, 'oldclass', 'newclass');

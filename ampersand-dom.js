@@ -3,40 +3,10 @@ var dom = module.exports = {
     text: function (el, val) {
         el.textContent = getString(val);
     },
-    // optimize if we have classList
-    addClass: function (el, cls) {
-        cls = getString(cls);
-        if (!cls) return;
-        if (Array.isArray(cls)) {
-            cls.forEach(function(c) {
-                dom.addClass(el, c);
-            });
-        } else if (el.classList) {
-            el.classList.add(cls);
-        } else {
-            if (!hasClass(el, cls)) {
-                if (el.classList) {
-                    el.classList.add(cls);
-                } else {
-                    el.className += ' ' + cls;
-                }
-            }
-        }
-    },
-    removeClass: function (el, cls) {
-        if (Array.isArray(cls)) {
-            cls.forEach(function(c) {
-                dom.removeClass(el, c);
-            });
-        } else if (el.classList) {
-            cls = getString(cls);
-            if (cls) el.classList.remove(cls);
-        } else {
-            // may be faster to not edit unless we know we have it?
-            el.className = el.className.replace(new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-        }
-    },
-    hasClass: hasClass,
+    addClass: require('amp-add-class'),
+    removeClass: require('amp-remove-class'),
+    hasClass: require('amp-has-class'),
+    toggleClass: require('amp-has-class'),
     switchClass: function (el, prevCls, newCls) {
         if (prevCls) this.removeClass(el, prevCls);
         this.addClass(el, newCls);
@@ -83,14 +53,6 @@ function getString(val) {
         return '';
     } else {
         return val;
-    }
-}
-
-function hasClass(el, cls) {
-    if (el.classList) {
-        return el.classList.contains(cls);
-    } else {
-        return new RegExp('(^| )' + cls + '( |$)', 'gi').test(el.className);
     }
 }
 

@@ -55,6 +55,10 @@
     ]
   },
   "dependencies": {
+    "amp-add-class": "^1.0.1",
+    "amp-has-class": "^1.0.3",
+    "amp-remove-class": "^1.0.1",
+    "amp-toggle-class": "^1.0.1",
     "ampersand-version": "^1.0.0"
   }
 }
