@@ -213,10 +213,16 @@ suite('attributes', function (s) {
     });
 });
 
-function isHidden(el) {
-    if (el.style.display === 'none') return true;
-    if (window.getComputedStyle(el).display === 'none') return true;
-    return false;
+function isHidden(el, visibility) {
+    if (visibility) {
+        if (el.style.visibility === 'hidden') return true;
+        if (window.getComputedStyle(el).visibility === 'hidden') return true;
+        return false;
+    } else {
+        if (el.style.display === 'none') return true;
+        if (window.getComputedStyle(el).display === 'none') return true;
+        return false;
+    }
 }
 
 suite('show/hide', function (s) {
@@ -283,6 +289,18 @@ suite('show/hide', function (s) {
         dom.show(el);
         t.notOk(isHidden(el));
         t.equal(el.style.display, 'table');
+
+        t.end();
+    });
+
+    s.test('with use of visibility property', function (t) {
+        t.notOk(isHidden(el, true), 'should not have a visibility property to start with');
+
+        dom.hide(el, 'visibility');
+        t.ok(isHidden(el, true), 'should have visibility set to hidden');
+
+        dom.show(el, 'visibility');
+        t.notOk(isHidden(el, true), 'should have visibility set back to previous property');
 
         t.end();
     });

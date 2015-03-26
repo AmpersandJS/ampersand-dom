@@ -65,15 +65,17 @@ var dom = module.exports = {
     hasAttribute: function (el, attr) {
         return el.hasAttribute(attr);
     },
-    hide: function (el) {
+    hide: function (el, mode) {
+        if (!mode) mode = 'display';
         if (!isHidden(el)) {
-            storeDisplayStyle(el);
-            hide(el);
+            storeDisplayStyle(el, mode);
+            hide(el, mode);
         }
     },
     // show element
-    show: function (el) {
-        show(el);
+    show: function (el, mode) {
+        if (!mode) mode = 'display';
+        show(el, mode);
     },
     html: function (el, content) {
         el.innerHTML = content;
@@ -106,16 +108,16 @@ function isHidden (el) {
     return dom.getAttribute(el, 'data-anddom-hidden') === 'true';
 }
 
-function storeDisplayStyle (el) {
-    dom.setAttribute(el, 'data-anddom-display', el.style.display);
+function storeDisplayStyle (el, mode) {
+    dom.setAttribute(el, 'data-anddom-' + mode, el.style[mode]);
 }
 
-function show (el) {
-    el.style.display = dom.getAttribute(el, 'data-anddom-display') || '';
+function show (el, mode) {
+    el.style[mode] = dom.getAttribute(el, 'data-anddom-' + mode) || '';
     dom.removeAttribute(el, 'data-anddom-hidden');
 }
 
-function hide (el) {
+function hide (el, mode) {
     dom.setAttribute(el, 'data-anddom-hidden', 'true');
-    el.style.display = 'none';
+    el.style[mode] = (mode === 'visibility' ? 'hidden' : 'none');
 }
