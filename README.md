@@ -59,6 +59,9 @@ dom.hide(el);
 // based on tagname and getComputedStyle()
 dom.show(el);
 
+// toggle display of element, between show/hide
+dom.toggle(el);
+
 // sets inner HTML, takes string or DOM
 dom.html(el, '<div></div>');
 ```
