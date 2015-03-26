@@ -55,9 +55,19 @@ dom.setAttribute(el, 'value', 'the value');
 // sets display none
 dom.hide(el);
 
-// shows element, trying to determine its default display state
+// hide takes a second parameter which changes
+// the css property used to hide the element
+// sets visibility hidden
+dom.hide(el, 'visibility');
+
+// shows element, trying to determine it's default display state
 // based on tagname and getComputedStyle()
 dom.show(el);
+
+// show also takes a second parameter which changes
+// the css property used to show the element
+// sets visibility on element based on its previous value
+dom.show(el, 'visibility');
 
 // sets inner HTML, takes string or DOM
 dom.html(el, '<div></div>');
