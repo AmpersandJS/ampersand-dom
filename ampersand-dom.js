@@ -62,6 +62,9 @@ var dom = module.exports = {
     getAttribute: function (el, attr) {
         return el.getAttribute(attr);
     },
+    hasAttribute: function (el, attr) {
+        return el.hasAttribute(attr);
+    },
     hide: function (el) {
         if (!isHidden(el)) {
             storeDisplayStyle(el);

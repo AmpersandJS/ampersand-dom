@@ -183,6 +183,34 @@ suite('attributes', function (s) {
 
         t.end();
     });
+
+    s.test('has attribute', function (t) {
+        t.notOk(dom.hasAttribute(fixture, 'foo'));
+
+        dom.setAttribute(fixture, 'foo', 'bar');
+        t.ok(dom.hasAttribute(fixture, 'foo'));
+
+        dom.removeAttribute(fixture, 'foo');
+        t.notOk(dom.hasAttribute(fixture, 'foo'));
+
+        t.end();
+    });
+
+    s.test('has boolean attribute', function (t) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        fixture.appendChild(input);
+
+        t.notOk(dom.hasAttribute(fixture, 'checked'));
+
+        dom.addAttribute(input, 'foo');
+        t.ok(dom.hasAttribute(input, 'foo'));
+
+        dom.removeAttribute(input, 'foo');
+        t.notOk(dom.hasAttribute(input, 'foo'));
+
+        t.end();
+    });
 });
 
 function isHidden(el) {

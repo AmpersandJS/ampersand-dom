@@ -43,6 +43,9 @@ dom.switchClass(el, 'oldclass', 'newclass');
 // if exists it will be cleared of content
 dom.addAttribute(el, 'checked');
 
+// returns true if that the element has an attribute with that name
+dom.hasAttribute(el, 'checked'); // => true
+
 // completely removes attribute
 dom.removeAttribute(el, 'checked');
 
