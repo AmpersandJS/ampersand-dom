@@ -26,6 +26,11 @@
     "type": "git",
     "url": "git://github.com/ampersandjs/ampersand-dom"
   },
+  "browserify": {
+    "transform": [
+      "ampersand-version"
+    ]
+  },
   "scripts": {
     "start": "zuul --local -- test/index.js",
     "test": "zuul --phantom -- test/index.js",
