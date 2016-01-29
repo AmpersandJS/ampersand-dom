@@ -267,13 +267,13 @@ suite('show/hide/toggle', function (s) {
     });
 
     s.test('toggle', function (t) {
-        t.notOk(isHidden(el));
+        t.notOk(isHidden(el), 'el starts out not hidden');
 
         dom.toggle(el);
-        t.ok(isHidden(el));
+        t.ok(isHidden(el), 'el toggles to hidden');
 
         dom.toggle(el);
-        t.notOk(isHidden(el));
+        t.notOk(isHidden(el), 'el toggles back to not hidden');
 
         t.end();
     });

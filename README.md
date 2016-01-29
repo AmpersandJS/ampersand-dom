@@ -69,6 +69,11 @@ dom.show(el, 'visibility');
 // toggle display of element, between show/hide
 dom.toggle(el);
 
+// toggle also takes the same second parameter as show/hide
+// which changes the css property used to show or hide
+// the element
+dom.toggle(el, 'visibility');
+
 // sets inner HTML, takes string or DOM
 dom.html(el, '<div></div>');
 ```
