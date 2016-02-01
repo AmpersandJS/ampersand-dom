@@ -225,7 +225,7 @@ function isHidden(el, visibility) {
     }
 }
 
-suite('show/hide', function (s) {
+suite('show/hide/toggle', function (s) {
     s.beforeEach(resetFixture);
     var el;
 
@@ -248,7 +248,7 @@ suite('show/hide', function (s) {
         t.end();
     });
 
-    s.test('simple', function (t) {
+    s.test('double', function (t) {
         t.notOk(isHidden(el));
 
         dom.hide(el);
@@ -259,6 +259,21 @@ suite('show/hide', function (s) {
 
         dom.show(el);
         t.notOk(isHidden(el));
+
+        dom.show(el);
+        t.notOk(isHidden(el));
+
+        t.end();
+    });
+
+    s.test('toggle', function (t) {
+        t.notOk(isHidden(el), 'el starts out not hidden');
+
+        dom.toggle(el);
+        t.ok(isHidden(el), 'el toggles to hidden');
+
+        dom.toggle(el);
+        t.notOk(isHidden(el), 'el toggles back to not hidden');
 
         t.end();
     });
@@ -276,6 +291,13 @@ suite('show/hide', function (s) {
         t.notOk(isHidden(el));
         t.equal(s.getPropertyValue('display'), 'table');
 
+        dom.toggle(el);
+        t.ok(isHidden(el));
+
+        dom.toggle(el);
+        t.notOk(isHidden(el));
+        t.equal(s.getPropertyValue('display'), 'table');
+
         t.end();
     });
 
@@ -287,6 +309,13 @@ suite('show/hide', function (s) {
         t.ok(isHidden(el));
 
         dom.show(el);
+        t.notOk(isHidden(el));
+        t.equal(el.style.display, 'table');
+
+        dom.toggle(el);
+        t.ok(isHidden(el));
+
+        dom.toggle(el);
         t.notOk(isHidden(el));
         t.equal(el.style.display, 'table');
 
