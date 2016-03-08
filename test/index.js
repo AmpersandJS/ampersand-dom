@@ -5,6 +5,9 @@ var fixture = document.createElement('div');
 fixture.id = 'fixture';
 document.body.appendChild(fixture);
 
+var svg = document.createElement('svg');
+document.body.appendChild(svg);
+
 var style = document.createElement('style');
 style.innerHTML = '';
 document.body.appendChild(style);
@@ -120,8 +123,24 @@ suite('classes', function (s) {
         t.notOk(dom.hasClass(fixture, 'bar'));
         t.notOk(dom.hasClass(fixture, 'baz'));
 
+        // Tests for svg elements
+        dom.addClass(svg, 'foo');
+        t.equal(normalizeString(svg.getAttribute('class')), 'foo');
+        t.ok(dom.hasClass(svg, 'foo'));
+
+        dom.addClass(svg, 'bar');
+        t.equal(normalizeString(svg.getAttribute('class')), 'foo bar');
+        t.ok(dom.hasClass(svg, 'foo'));
+        t.ok(dom.hasClass(svg, 'bar'));
+
+        dom.removeClass(svg, 'bar');
+        t.equal(normalizeString(svg.getAttribute('class')), 'foo');
+        t.notOk(dom.hasClass(svg, 'bar'));
+        t.ok(dom.hasClass(svg, 'foo'));
+
         t.doesNotThrow(function () {
             dom.removeClass(fixture, '');
+            dom.removeClass(svg, '');
         }, 'should not complain when removing empty class');
 
         t.end();
