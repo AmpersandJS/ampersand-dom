@@ -32,8 +32,16 @@ var dom = module.exports = {
             cls = getString(cls);
             if (cls) el.classList.remove(cls);
         } else {
-            // may be faster to not edit unless we know we have it?
-            el.className = el.className.replace(new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            // gets class or classes separated by spaces
+            var clsFinder = new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi');
+            if(typeof el.className === 'object'){
+              // node is an SVG
+              var currentClasses = el.getAttribute('class') || '';
+              el.setAttribute('class', currentClasses.replace(clsFinder, ' '));
+            } else {
+              // may be faster to not edit unless we know we have it?
+              el.className = el.className.replace(clsFinder, ' ');
+            }
         }
     },
     hasClass: hasClass,
